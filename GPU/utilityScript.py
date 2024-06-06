@@ -39,7 +39,7 @@ def getApplicationData(dataSetName,nSamplePerClass=0):
 
 	else: #for USPS data
 		from zipfile import ZipFile
-		fileName = './DataFile/USPS.zip'
+		fileName = 'GPU/DataFile/USPS.zip'
 		with ZipFile(fileName, 'r') as zip:
 			zip.extractall()
 		labeledData = pickle.load(open('USPS.p','rb'))
@@ -51,6 +51,7 @@ def getApplicationData(dataSetName,nSamplePerClass=0):
 def makeStratifiedSubset(labeledData,noSamplePerClass=0):
 	#This function will randomly pick 'noSamplePerClass' samples from each class to create a subset.
 	#If noSamplePerClass==0, then all the data will be returned.
+	np.random.seed(42)
 	data = []
 	label = []
 	classList = np.unique(labeledData[:,-1])
@@ -222,15 +223,15 @@ def display2DDataTrTst(trData,trCentroids,trAnnotation,tstData,tstAnnotation,dat
 	for i in range(len(trAnnotation)):	   
 		if(int(trAnnotation[i,0]) not in group):
 			if trAnnotation[i,2] == '+':
-				ax[0].scatter(trData[i,0],trData[i,1],s=trAnnotation[i,3].astype(int), edgecolors=str(trAnnotation[i,1]), facecolors=str(trAnnotation[i,1]),marker=trAnnotation[i,2],label = trAnnotation[i,4])
+				ax[0].scatter(trData[i,0], trData[i,1], s=trAnnotation[i,3].astype(int), color=str(trAnnotation[i,1]), marker=trAnnotation[i,2], label=trAnnotation[i,4])
 			else:
-				ax[0].scatter(trData[i,0],trData[i,1],s=trAnnotation[i,3].astype(int), edgecolors=str(trAnnotation[i,1]), facecolors='None',marker=trAnnotation[i,2],label = trAnnotation[i,4])
+				ax[0].scatter(trData[i,0],trData[i,1],s=trAnnotation[i,3].astype(int), color=str(trAnnotation[i,1]), marker=trAnnotation[i,2],label = trAnnotation[i,4])
 			group.extend([int(trAnnotation[i,0])])
 		else:
 			if trAnnotation[i,2] == '+':
-				ax[0].scatter(trData[i,0],trData[i,1],s=trAnnotation[i,3].astype(int), edgecolors=str(trAnnotation[i,1]), facecolors=str(trAnnotation[i,1]),marker=trAnnotation[i,2])
+				ax[0].scatter(trData[i,0],trData[i,1],s=trAnnotation[i,3].astype(int), color=str(trAnnotation[i,1]),marker=trAnnotation[i,2])
 			else:
-				ax[0].scatter(trData[i,0],trData[i,1],s=trAnnotation[i,3].astype(int), edgecolors=str(trAnnotation[i,1]), facecolors='None',marker=trAnnotation[i,2])
+				ax[0].scatter(trData[i,0],trData[i,1],s=trAnnotation[i,3].astype(int), color=str(trAnnotation[i,1]), marker=trAnnotation[i,2])
 		
 	ax[0].title.set_text('Training data')
 	ax[0].set_yticklabels([])
@@ -243,15 +244,15 @@ def display2DDataTrTst(trData,trCentroids,trAnnotation,tstData,tstAnnotation,dat
 	for i in range(len(tstAnnotation)):	   
 		if(int(tstAnnotation[i,0]) not in group):
 			if tstAnnotation[i,2] == '+':
-				ax[1].scatter(tstData[i,0],tstData[i,1],s=tstAnnotation[i,3].astype(int), edgecolors=str(tstAnnotation[i,1]), facecolors=str(tstAnnotation[i,1]),marker=tstAnnotation[i,2],label = tstAnnotation[i,4])
+				ax[1].scatter(tstData[i,0],tstData[i,1],s=tstAnnotation[i,3].astype(int), color=str(tstAnnotation[i,1]),marker=tstAnnotation[i,2],label = tstAnnotation[i,4])
 			else:
-				ax[1].scatter(tstData[i,0],tstData[i,1],s=tstAnnotation[i,3].astype(int), edgecolors=str(tstAnnotation[i,1]), facecolors='None',marker=tstAnnotation[i,2],label = tstAnnotation[i,4])
+				ax[1].scatter(tstData[i,0],tstData[i,1],s=tstAnnotation[i,3].astype(int), color=str(tstAnnotation[i,1]),marker=tstAnnotation[i,2],label = tstAnnotation[i,4])
 			group.extend([int(tstAnnotation[i,0])])
 		else:
 			if tstAnnotation[i,2] == '+':
-				ax[1].scatter(tstData[i,0],tstData[i,1],s=tstAnnotation[i,3].astype(int), edgecolors=str(tstAnnotation[i,1]), facecolors=str(tstAnnotation[i,1]),marker=tstAnnotation[i,2])
+				ax[1].scatter(tstData[i,0],tstData[i,1],s=tstAnnotation[i,3].astype(int), color=str(tstAnnotation[i,1]),marker=tstAnnotation[i,2])
 			else:
-				ax[1].scatter(tstData[i,0],tstData[i,1],s=tstAnnotation[i,3].astype(int), edgecolors=str(tstAnnotation[i,1]), facecolors='None',marker=tstAnnotation[i,2])
+				ax[1].scatter(tstData[i,0],tstData[i,1],s=tstAnnotation[i,3].astype(int), color=str(tstAnnotation[i,1]),marker=tstAnnotation[i,2])
 
 	ax[1].title.set_text('Test data')
 	ax[1].set_yticklabels([])
@@ -288,7 +289,7 @@ def createOutputAsCentroids(data,label):
 
 def returnBottleneckArc(dataSetName):
 	if dataSetName.upper()=='USPS':
-		return [2000,1000,500,2]
+		return [2000,1000,400,2]
 	elif dataSetName.upper()=='MNIST':
 		return [1000,500,125,2]
 	

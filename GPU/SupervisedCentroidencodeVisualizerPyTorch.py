@@ -31,7 +31,7 @@ class SCEVisualizer(nn.Module):
 				self.hLayerPost.extend([self.hLayerPost[i-1]])
 
 			self.l1Penalty,self.l2Penalty=0.0,0.0
-			self.oActFunc,self.errorFunc='linear','MSE'
+			self.oActFunc,self.errorFunc='linear','HUBER'
 
 			#pdb.set_trace()
 			if 'l1Penalty' in netConfig.keys(): self.l1Penalty=netConfig['l1Penalty']
@@ -45,7 +45,7 @@ class SCEVisualizer(nn.Module):
 				self.hActFuncPost.extend([self.hActFuncPost[i-1]])
 		else:#for default set up
 			self.hLayer=[2]
-			self.oActFunc,self.errorFunc='linear','MSE'
+			self.oActFunc,self.errorFunc='linear','HUBER'
 			self.hActFunc,self.hActFuncPost='tanh','tanh'
 
 		self.device = None
@@ -206,6 +206,14 @@ class SCEVisualizer(nn.Module):
 				criterion = nn.BCELoss()
 			elif self.errorFunc.upper() == 'MSE':
 				criterion = nn.MSELoss()
+			elif self.errorFunc.upper() == 'L1':
+				criterion = nn.L1Loss()
+			elif self.errorFunc.upper() == 'HUBER':
+				criterion = nn.HuberLoss()
+			elif self.errorFunc.upper() == 'HINGE':
+				criterion = nn.HingeEmbeddingLoss()
+			elif self.errorFunc.upper() == 'COSINE':
+				criterion = nn.CosineEmbeddingLoss()
 
 			# set optimization function
 			optimizer = torch.optim.Adam(self.parameters(),lr=learningRate,amsgrad=True)
@@ -286,6 +294,13 @@ class SCEVisualizer(nn.Module):
 			criterion = nn.BCELoss()
 		elif self.errorFunc.upper() == 'MSE':
 			criterion = nn.MSELoss()
+		elif self.errorFunc.upper() == 'L1':
+			criterion = nn.L1Loss()
+		elif self.errorFunc.upper() == 'HUBER':	
+			criterion = nn.HuberLoss()
+		elif self.errorFunc.upper() == 'HINGE':
+			criterion = nn.HingeEmbeddingLoss()
+
 
 		# set optimization function
 		optimizer = torch.optim.Adam(self.parameters(),lr=learningRate,amsgrad=True)
