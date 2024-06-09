@@ -19,5 +19,5 @@ build/
 *.env.*
 
 data/
-*.csv
+datas/
 *.p

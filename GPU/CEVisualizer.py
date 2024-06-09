@@ -95,8 +95,9 @@ def createModel(dataSetName, dict2, trData, trLabels, tstData, tstLabels, params
 
 
 def Model_Selecter():
-    datasets = ["MNIST", "USPS"]
-    error_funcs = ["CE", "BCE", "MSE", "L1", "HUBER", "HINGE", "COSINE"]
+    save_csv = "MSE2.csv"
+    datasets = ["USPS"]
+    error_funcs = ["MSE"]  # ["L1"] # ["HUBER"] #["HINGE"]  # Errors BCE
     num_epochs_pres = [25, 50, 100]
     num_epochs_posts = [50, 100, 200]
     miniBatch_sizes = [64, 128, 256, 512]
@@ -189,7 +190,7 @@ def Model_Selecter():
                                 },
                                 ignore_index=True,
                             )
-                            MSE_df.to_csv("MSE.csv", index=False)
+                            MSE_df.to_csv(save_csv, index=False)
 
 
 if __name__ == "__main__":
