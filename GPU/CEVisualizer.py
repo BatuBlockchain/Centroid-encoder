@@ -140,7 +140,7 @@ def Model_Selecter():
                     for miniBatch_size in miniBatch_sizes:
                         for learning_rate in learning_rates:
                             save_csv = (
-                                "results/" + dataSetName + "_" + error_funcs + ".csv"
+                                "results/" + dataSetName + "_" + errorFunc + ".csv"
                             )
                             if dataSetName == "MNIST":
                                 trData, trLabels, tstData, tstLabels = (
