@@ -210,7 +210,7 @@ def display2DData(trData,trAnnotation,fig_l):
 	ax1.axis('off')
 	plt.show()
 
-def display2DDataTrTst(trData,trCentroids,trAnnotation,tstData,tstAnnotation,dataSetName):
+def display2DDataTrTst(trData,trCentroids,trAnnotation,tstData,tstAnnotation,dataSetName,error_func):
 	
 	# data: a dictionary. The keys are the model names. In each model there are training and test data with labels
 	fig, ax = plt.subplots(1,2)
@@ -266,7 +266,9 @@ def display2DDataTrTst(trData,trCentroids,trAnnotation,tstData,tstAnnotation,dat
 		plt.legend(loc='upper right',fontsize=15)
 	fig.set_size_inches(13.5, 5.5)
 	plt.plot()
-	plt.show()
+	# save the figure
+	fig.savefig('GPU/Results/'+dataSetName+'_'+error_func+'_voronoi.png', bbox_inches='tight')
+ 	# plt.show()
 
 def calcCentroid(data,label):
 	centroids=[]

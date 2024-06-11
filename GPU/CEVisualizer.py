@@ -88,10 +88,19 @@ def createModel(dataSetName, dict2, trData, trLabels, tstData, tstLabels, params
     )
     MSE = metrics.mean_squared_error(tstLabels, pDataTstLabels)
     print("MSE loss on test data:", MSE)
-    return MSE
 
+    error_func = dict2["errorFunc"]
     # now visualize the training and test data using voronoi cells
-    # display2DDataTrTst(pDataTr,trCentroids,annotDataTr,pDataTst,annotDataTst,dataSetName)
+    display2DDataTrTst(
+        pDataTr,
+        trCentroids,
+        annotDataTr,
+        pDataTst,
+        annotDataTst,
+        dataSetName,
+        error_func,
+    )
+    return MSE
 
 
 def Model_Selecter():
