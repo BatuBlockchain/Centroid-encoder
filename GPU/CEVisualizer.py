@@ -91,15 +91,7 @@ def createModel(dataSetName, dict2, trData, trLabels, tstData, tstLabels, params
 
     error_func = dict2["errorFunc"]
     # now visualize the training and test data using voronoi cells
-    display2DDataTrTst(
-        pDataTr,
-        trCentroids,
-        annotDataTr,
-        pDataTst,
-        annotDataTst,
-        dataSetName,
-        error_func,
-    )
+    # display2DDataTrTst(pDataTr,trCentroids,annotDataTr,pDataTst,annotDataTst,dataSetName,error_func)
     return MSE
 
 
