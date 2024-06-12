@@ -24,6 +24,9 @@ Requirements:
 
 Run the script from the command line:
 
+- [Presentation](https://docs.google.com/presentation/d/14sshS62iDMEitfPfYz3-XgHNnj1OJK2j/edit?usp=sharing&ouid=109118458086578350684&rtpof=true&sd=true)
+- [Article](https://drive.google.com/file/d/1DQhjjofsQ8rmreh8TAj40RcekvrYU_3M/view?usp=sharing)
+
 ```bash
 python CEVisualizer.py
 
