@@ -13,12 +13,12 @@ CEVisualizer is a Python script for creating and evaluating machine learning mod
 Instruction to use the code package.
 
 Requirements:
-1. Python. The code was tested in versions: 3.7.3 & 3.7.4
-2. PyTorch. The code was tested in versions: 1.1.0 & 1.2.0
-3. Numpy version 1.16.4
-4. Scipy version 1.3.0
-5. Matplotlib version 3.1.0
-6. ipython (optional) version 7.6.1
+1. Python. The code was tested in versions: 3.10.9
+2. PyTorch. The code was tested in versions: 2.4.0.dev20240502+cu124
+3. Numpy version 1.23.5
+4. Scipy version 1.10.0
+5. Matplotlib version 3.7.0
+6. ipython (optional) version 8.10.0
 
 ## Usage
 

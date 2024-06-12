@@ -1,0 +1,6 @@
+python==3.10.9
+torch==2.4.0.dev20240502+cu124
+numpy==1.23.5
+scipy==1.10.0
+matplotlib==3.7.0
+ipython==8.10.0
